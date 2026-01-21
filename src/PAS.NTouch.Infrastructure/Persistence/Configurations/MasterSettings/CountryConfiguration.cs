@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using PAS.NTouch.Domain.MasterSettings.Entities;
+using PAS.NTouch.Infrastructure.Persistence.SeedData;
 
 namespace PAS.NTouch.Infrastructure.Persistence.Configurations.MasterSettings;
 
@@ -40,5 +41,8 @@ public class CountryConfiguration : IEntityTypeConfiguration<Country>
             .WithOne(bf => bf.Country)
             .HasForeignKey(bf => bf.CountryId)
             .OnDelete(DeleteBehavior.Restrict);
+
+        // Seed data for countries
+        CountryCurrencySeedData.SeedCountries(builder);
     }
 }

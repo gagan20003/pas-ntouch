@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using PAS.NTouch.Domain.MasterSettings.Entities;
+using PAS.NTouch.Infrastructure.Persistence.SeedData;
 
 namespace PAS.NTouch.Infrastructure.Persistence.Configurations.MasterSettings;
 
@@ -18,7 +19,8 @@ public class CurrencyConfiguration : IEntityTypeConfiguration<Currency>
             .IsRequired()
             .HasMaxLength(100);
 
-        builder.HasIndex(c => c.CurrencyCode)
+        // Note: CurrencyCode is not unique as multiple countries can share same currency (e.g., EUR)
+        builder.HasIndex(c => new { c.CountryId, c.CurrencyCode })
             .IsUnique();
 
         builder.HasOne(c => c.Country)
@@ -30,5 +32,8 @@ public class CurrencyConfiguration : IEntityTypeConfiguration<Currency>
             .WithOne(bf => bf.Currency)
             .HasForeignKey(bf => bf.CurrencyId)
             .OnDelete(DeleteBehavior.Restrict);
+
+        // Seed data for currencies
+        CountryCurrencySeedData.SeedCurrencies(builder);
     }
 }

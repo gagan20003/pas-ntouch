@@ -1,6 +1,6 @@
 # PAS NTouch - Insurance Policy Administration System
 
-A .NET 9 Clean Architecture solution for Insurance Policy Administration, configured for NeonDB (PostgreSQL).
+A .NET 10 Clean Architecture solution for Insurance Policy Administration, configured for NeonDB (PostgreSQL).
 
 ## Project Structure
 
@@ -22,7 +22,7 @@ PAS.NTouch/
 
 ## Prerequisites
 
-- .NET 9 SDK
+- .NET 10 SDK
 - NeonDB account (or local PostgreSQL)
 
 ## Getting Started
@@ -83,7 +83,7 @@ API will be available at:
 
 ## Technology Stack
 
-- **Framework**: .NET 9, ASP.NET Core
+- **Framework**: .NET 10, ASP.NET Core
 - **Database**: NeonDB (PostgreSQL) via Npgsql
 - **ORM**: Entity Framework Core 9
 - **API Documentation**: Swagger/OpenAPI
